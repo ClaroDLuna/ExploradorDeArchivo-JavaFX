@@ -12,7 +12,7 @@
         <Label fx:id="labelD" />
       <SplitPane dividerPositions="0.238544474393531" layoutY="52.0" prefHeight="425.0" prefWidth="749.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                <children>
                   <ListView fx:id="listView" onMouseClicked="#handleMouseClick" prefHeight="425.0" prefWidth="175.0" />
                </children>
