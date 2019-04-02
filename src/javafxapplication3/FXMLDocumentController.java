@@ -5,7 +5,8 @@
  */
 package javafxapplication3;
 
-import java.awt.event.MouseEvent;
+//import java.awt.event.MouseEvent;
+import javafx.scene.input.MouseEvent;
 import java.io.File;
 import java.net.URL;
 import java.util.List;
@@ -25,13 +26,12 @@ import javafx.scene.control.ListView;
  */
 public class FXMLDocumentController implements Initializable {
     
-    @FXML
-    private ListView<String> listView;
-    
     ObservableList<String> listButtons = FXCollections.observableArrayList();
     
     @FXML
-    private void handleMouseClick(MouseEvent event) {
+    private ListView<String> listView;
+    
+    @FXML private void handleMouseClick(MouseEvent event) {
         System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
     }
     
