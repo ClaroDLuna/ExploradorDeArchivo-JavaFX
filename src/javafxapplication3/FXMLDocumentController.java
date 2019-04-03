@@ -72,6 +72,7 @@ public class FXMLDocumentController implements Initializable {
         TreeItem<Directory> pcRoot = new TreeItem<>(new Directory("Mi PC",""),pcImage);
         treeview.setRoot(pcRoot);
         
+        // Check if C hard disk exist
         if( mainC.exists()){
             // Image hard disk
             ImageView diskImage = new ImageView(diskIcon);
@@ -82,6 +83,7 @@ public class FXMLDocumentController implements Initializable {
             pcRoot.getChildren().add(rootC);
         }
         
+        // Check if D hard disk exist
         if( mainD.exists()){
             // Image hard disk
             ImageView diskImage = new ImageView(diskIcon);
@@ -92,6 +94,7 @@ public class FXMLDocumentController implements Initializable {
             pcRoot.getChildren().add(rootD);
         }
         
+        // Check if documents directory exist
         if( mainDocuments.exists()){
             //Image documents
             ImageView docsImage = new ImageView(documentsIcon);
@@ -102,6 +105,7 @@ public class FXMLDocumentController implements Initializable {
             pcRoot.getChildren().add(rootDocuments);
         }
         
+        // Check if video directory exist
         if( mainVideo.exists()){
             //image video
             ImageView vidImage = new ImageView(videoIcon);
@@ -112,6 +116,7 @@ public class FXMLDocumentController implements Initializable {
             pcRoot.getChildren().add(rootVideo);
         }
         
+        // Check if downloads directory exist
         if( mainDownloads.exists()){
             //image downloads
             ImageView downImage = new ImageView(downloadsIcon);
@@ -122,6 +127,7 @@ public class FXMLDocumentController implements Initializable {
             pcRoot.getChildren().add(rootDownloads);
         }
         
+        // Check if music directory exist
         if( mainMusic.exists()){
             //image music
             ImageView musImage = new ImageView(musicIcon);
@@ -145,6 +151,7 @@ public class FXMLDocumentController implements Initializable {
       });
     }    
    
+    // Get list of directory from root
     void getTitleDirectory(TreeItem root,File maindir)
     {
         if(maindir.exists() && maindir.isDirectory()) 
@@ -160,7 +167,8 @@ public class FXMLDocumentController implements Initializable {
             getDirectory(root,arr);
         }  
     }
-        
+     
+    // Insert in TreeItem 
     void getDirectory(TreeItem root,File[] arr)  
     { 
         for ( final File fileEntry : arr){
@@ -173,6 +181,7 @@ public class FXMLDocumentController implements Initializable {
                 
                 TreeItem<Directory> children = new TreeItem<>(new Directory(fileEntry.getName(), fileEntry.getAbsolutePath()), dirImage);
                 root.getChildren().add(children);
+                root.setExpanded(true);
             }
         }
     }
