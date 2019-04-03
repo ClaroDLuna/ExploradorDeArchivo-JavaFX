@@ -37,6 +37,10 @@ public class FXMLDocumentController implements Initializable {
     Image pcIcon = new Image( getClass().getResourceAsStream("/img/pc.png"));
     Image diskIcon = new Image( getClass().getResourceAsStream("/img/hard-disk.png"));
     Image directoryIcon = new Image( getClass().getResourceAsStream("/img/directory.png"));
+    Image documentsIcon = new Image( getClass().getResourceAsStream("/img/documents.png"));
+    Image musicIcon = new Image( getClass().getResourceAsStream("/img/Music.png"));
+    Image downloadsIcon = new Image( getClass().getResourceAsStream("/img/Downloads.png"));
+    Image videoIcon = new Image( getClass().getResourceAsStream("/video/pc.png"));
     
     /*@FXML
     private ListView<String> listView;
@@ -64,6 +68,30 @@ public class FXMLDocumentController implements Initializable {
         ImageView dirImage = new ImageView(directoryIcon);
         dirImage.setFitHeight(20);
         dirImage.setFitWidth(20);
+        
+        //Image documents
+        ImageView docsImage = new ImageView(documentsIcon);
+        docsImage.setFitHeight(20);
+        docsImage.setFitWidth(20);
+        
+        //image music
+        ImageView musImage = new ImageView(musicIcon);
+        musImage.setFitHeight(20);
+        musImage.setFitWidth(20);
+        
+        
+        //image downloads
+        ImageView downImage = new ImageView(downloadsIcon);
+        downImage.setFitHeight(20);
+        downImage.setFitWidth(20);
+        
+        
+        //image video
+        ImageView vidImage = new ImageView(videoIcon);
+        vidImage.setFitHeight(20);
+        vidImage.setFitWidth(20);
+        
+       
         
         String dirPathC = "C:\\"; 
         String dirPathD = "D:\\"; 
@@ -95,19 +123,23 @@ public class FXMLDocumentController implements Initializable {
         }
         
         if( mainDocuments.exists()){
-            
+            TreeItem<String> rootDocuments = new TreeItem<>("Documentos", docsImage);
+            pcRoot.getChildren().add(rootDocuments);
         }
         
         if( mainVideo.exists()){
-            
+             TreeItem<String> rootVideo = new TreeItem<>("Videos", vidImage);
+            pcRoot.getChildren().add(rootVideo);
         }
         
         if( mainDownloads.exists()){
-            
+            TreeItem<String> rootDownsloads = new TreeItem<>("Descargas", downImage);
+            pcRoot.getChildren().add(rootDownsloads);
         }
         
         if( mainMusic.exists()){
-            
+            TreeItem<String> rootMusic = new TreeItem<>("Musica", musImage);
+            pcRoot.getChildren().add(rootMusic);
         }
     }    
     
