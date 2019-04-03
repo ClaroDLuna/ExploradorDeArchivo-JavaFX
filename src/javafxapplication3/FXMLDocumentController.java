@@ -92,27 +92,23 @@ public class FXMLDocumentController implements Initializable {
         if( mainD.exists()){
             TreeItem<String> rootD = new TreeItem<>("Disco D", diskImage);
             pcRoot.getChildren().add(rootD);
-            //listButtons.add("Disco D");
         }
         
-        /*if( mainDocuments.exists()){
-            listButtons.add("Mis Documentos");
+        if( mainDocuments.exists()){
+            
         }
         
         if( mainVideo.exists()){
-            listButtons.add("Mis Videos");
+            
         }
         
         if( mainDownloads.exists()){
-            listButtons.add("Mis Descargas");
+            
         }
         
         if( mainMusic.exists()){
-            listButtons.add("Mi Música");
+            
         }
-        
-        listView.setItems(listButtons);*/
-   
     }    
     
     /*@FXML 
