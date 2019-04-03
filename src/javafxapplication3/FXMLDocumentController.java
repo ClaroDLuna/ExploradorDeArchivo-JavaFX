@@ -5,7 +5,6 @@
  */
 package javafxapplication3;
 
-//import java.awt.event.MouseEvent;
 import javafx.scene.input.MouseEvent;
 import java.io.File;
 import java.net.URL;
@@ -19,6 +18,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -29,17 +32,39 @@ public class FXMLDocumentController implements Initializable {
     ObservableList<String> listButtons = FXCollections.observableArrayList();
     
     @FXML
+    TreeView <String> treeview;
+    
+    Image pcIcon = new Image( getClass().getResourceAsStream("/img/pc.png"));
+    Image diskIcon = new Image( getClass().getResourceAsStream("/img/hard-disk.png"));
+    Image directoryIcon = new Image( getClass().getResourceAsStream("/img/directory.png"));
+    
+    /*@FXML
     private ListView<String> listView;
     
     @FXML private void handleMouseClick(MouseEvent event) {
         System.out.println("clicked on " + listView.getSelectionModel().getSelectedItem());
-    }
+    }*/
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         String hostname = System.getProperty("user.name");
-
+        
+        // Image Pc
+        ImageView pcImage = new ImageView(pcIcon);
+        pcImage.setFitHeight(20);
+        pcImage.setFitWidth(20);
+        
+        // Image hard disk
+        ImageView diskImage = new ImageView(diskIcon);
+        diskImage.setFitHeight(20);
+        diskImage.setFitWidth(20);
+        
+        // Image directory
+        ImageView dirImage = new ImageView(directoryIcon);
+        dirImage.setFitHeight(20);
+        dirImage.setFitWidth(20);
+        
         String dirPathC = "C:\\"; 
         String dirPathD = "D:\\"; 
         String dirPathDocuments = "C:\\Users\\"+ hostname +"\\Documents";
@@ -54,34 +79,36 @@ public class FXMLDocumentController implements Initializable {
         File mainVideo = new File(dirPathVideo);
         File mainDownloads = new File(dirPathDownloads);
         File mainMusic = new File(dirPathMusic);
-
+        
+        TreeItem<String> pcRoot = new TreeItem<>("Mi PC",pcImage);
+        treeview.setRoot(pcRoot);
         
         if( mainC.exists()){
-            listButtons.add("Disco C");
+            TreeItem<String> rootC = new TreeItem<>("Disco C", diskImage);
+            pcRoot.getChildren().add(rootC);
+            //listButtons.add("Disco C");
         }
         
         if( mainD.exists()){
-            listButtons.add("Disco D");
+            TreeItem<String> rootD = new TreeItem<>("Disco D", diskImage);
+            pcRoot.getChildren().add(rootD);
         }
         
         if( mainDocuments.exists()){
-            listButtons.add("Mis Documentos");
+            
         }
         
         if( mainVideo.exists()){
-            listButtons.add("Mis Videos");
+            
         }
         
         if( mainDownloads.exists()){
-            listButtons.add("Mis Descargas");
+            
         }
         
         if( mainMusic.exists()){
-            listButtons.add("Mi Música");
+            
         }
-        
-        listView.setItems(listButtons);
-   
     }    
     
     /*@FXML 
