@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TreeView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane id="AnchorPane" prefHeight="478.0" prefWidth="737.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication3.FXMLDocumentController">
@@ -10,15 +9,6 @@
         <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
         <Label fx:id="labelC" />
         <Label fx:id="labelD" />
-      <SplitPane dividerPositions="0.238544474393531" layoutY="52.0" prefHeight="425.0" prefWidth="749.0">
-        <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-               <children>
-                  <ListView fx:id="listView" onMouseClicked="#handleMouseClick" prefHeight="425.0" prefWidth="175.0" />
-               </children>
-            </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" />
-        </items>
-      </SplitPane>
+      <TreeView fx:id="treeview" layoutX="-1.0" layoutY="37.0" prefHeight="441.0" prefWidth="208.0" />
     </children>
 </AnchorPane>
