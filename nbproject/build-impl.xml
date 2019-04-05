@@ -836,7 +836,7 @@ is divided into following sections:
                     <chainedmapper>
                         <flattenmapper/>
                         <filtermapper>
-                            <replacestring from=" " to="%20"/>
+                            <replacestring from=" " to="%30"/>
                         </filtermapper>
                         <globmapper from="*" to="lib/*"/>
                     </chainedmapper>
