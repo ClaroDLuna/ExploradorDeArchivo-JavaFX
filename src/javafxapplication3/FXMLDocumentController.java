@@ -7,19 +7,24 @@ package javafxapplication3;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
+import javafx.scene.input.MouseEvent;
 
+import static javafxapplication3.ControllerTableView.Fx2;
 
 /**
  *
@@ -30,6 +35,8 @@ public class FXMLDocumentController implements Initializable {
     // Obtener atributo TreeView del archivo fxml
     @FXML
     TreeView <Directory> treeview;
+    @FXML
+    private Pane secPane;
     
     // Instanciar objetos Image de los iconos
     Image pcIcon = new Image( getClass().getResourceAsStream("/img/pc.png"));
@@ -42,6 +49,16 @@ public class FXMLDocumentController implements Initializable {
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
+        Pane newLoadedPane;
+        secPane.getChildren().clear();
+        try {
+            newLoadedPane =  FXMLLoader.load(getClass().getResource("Scene2.fxml"));
+            secPane.getChildren().add(newLoadedPane);
+        } catch (IOException ex) {
+            Logger.getLogger(FXMLDocumentController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         // Obtener el nombre del usuario
         String hostname = System.getProperty("user.name");
           
@@ -63,8 +80,8 @@ public class FXMLDocumentController implements Initializable {
         
         // Configurar icono de Pc
         ImageView pcImage = new ImageView(pcIcon);
-        pcImage.setFitHeight(25);
-        pcImage.setFitWidth(25);
+        pcImage.setFitHeight(20);
+        pcImage.setFitWidth(20);
         
         // Crear raiz del TreeView
         TreeItem<Directory> pcRoot = new TreeItem<>(new Directory("Mi PC",""),pcImage);
@@ -78,8 +95,8 @@ public class FXMLDocumentController implements Initializable {
         if( mainC.exists()){
             // Image hard disk
             ImageView diskImage = new ImageView(diskIcon);
-            diskImage.setFitHeight(25);
-            diskImage.setFitWidth(25);
+            diskImage.setFitHeight(20);
+            diskImage.setFitWidth(20);
             
             TreeItem<Directory> rootC = new TreeItem<>(new Directory("Disco C", dirPathC), diskImage);
             pcRoot.getChildren().add(rootC);
@@ -89,8 +106,8 @@ public class FXMLDocumentController implements Initializable {
         if( mainD.exists()){
             // Image hard disk
             ImageView diskImage = new ImageView(diskIcon);
-            diskImage.setFitHeight(25);
-            diskImage.setFitWidth(25);
+            diskImage.setFitHeight(20);
+            diskImage.setFitWidth(20);
             
             TreeItem<Directory> rootD = new TreeItem<>(new Directory("Disco D", dirPathD), diskImage);
             pcRoot.getChildren().add(rootD);
@@ -100,8 +117,8 @@ public class FXMLDocumentController implements Initializable {
         if( mainDocuments.exists()){
             //Image documents
             ImageView docsImage = new ImageView(documentsIcon);
-            docsImage.setFitHeight(25);
-            docsImage.setFitWidth(25);
+            docsImage.setFitHeight(20);
+            docsImage.setFitWidth(20);
         
             TreeItem<Directory> rootDocuments = new TreeItem<>(new Directory("Mis Documentos", dirPathDocuments), docsImage);
             pcRoot.getChildren().add(rootDocuments);
@@ -111,8 +128,8 @@ public class FXMLDocumentController implements Initializable {
         if( mainVideo.exists()){
             //image video
             ImageView vidImage = new ImageView(videoIcon);
-            vidImage.setFitHeight(25);
-            vidImage.setFitWidth(25);
+            vidImage.setFitHeight(20);
+            vidImage.setFitWidth(20);
             
             TreeItem<Directory> rootVideo = new TreeItem<>(new Directory("Mis Videos", dirPathVideo), vidImage);
             pcRoot.getChildren().add(rootVideo);
@@ -122,8 +139,8 @@ public class FXMLDocumentController implements Initializable {
         if( mainDownloads.exists()){
             //image downloads
             ImageView downImage = new ImageView(downloadsIcon);
-            downImage.setFitHeight(25);
-            downImage.setFitWidth(25);
+            downImage.setFitHeight(20);
+            downImage.setFitWidth(20);
         
             TreeItem<Directory> rootDownloads = new TreeItem<>(new Directory("Mis Descargas", dirPathDownloads), downImage);
             pcRoot.getChildren().add(rootDownloads);
@@ -133,8 +150,8 @@ public class FXMLDocumentController implements Initializable {
         if( mainMusic.exists()){
             //image music
             ImageView musImage = new ImageView(musicIcon);
-            musImage.setFitHeight(25);
-            musImage.setFitWidth(25);
+            musImage.setFitHeight(20);
+            musImage.setFitWidth(20);
             
             TreeItem<Directory> rootMusic = new TreeItem<>(new Directory("Mi Música", dirPathMusic), musImage);
             pcRoot.getChildren().add(rootMusic);
@@ -154,11 +171,39 @@ public class FXMLDocumentController implements Initializable {
             // Obtencion del Directorio seleccionado
             File rootFile = new File(selectedItem.getValue().getPath());
             
+            //Fx2.tableview.getItems().clear();
+            //Fx2.CreateTableView();
             getTitleDirectory(selectedItem,rootFile);
         }
       });
     }    
    
+    @FXML
+    private void handleMouseClicked(MouseEvent mouseEvent) {
+        if(mouseEvent.getClickCount() == 1){
+            
+            try{
+                System.out.println("Hola click");
+                TreeItem<Directory> item = treeview.getSelectionModel().getSelectedItem();
+                /*Fx1.CurrDirName = item.getValue();
+                System.out.println("Selected Text : " + item.getValue());
+                Fx1.CurrDirFile = new File(Fx1.FindAbsolutePath(item,item.getValue()));
+                Fx1.CurrDirStr = Fx1.CurrDirFile.getAbsolutePath();
+                label.setText(Fx1.CurrDirStr);*/
+
+            
+                Fx2.tableview.getItems().clear();
+                Fx2.CreateTableView();
+                /**tableview.getItems().clear();
+                 CreateTableView();
+                 /**call some other function to activate createtableview() in corres controller */
+            }catch(Exception x){
+                System.out.println(x.getMessage());
+            }
+        }
+        //Fx2.tableview.getItems().clear();
+        //Fx2.CreateTableView();
+    }
     // Funcion que obtiene la lista de Directorios a partir de una ruta
     void getTitleDirectory(TreeItem root,File maindir)
     {
@@ -192,8 +237,8 @@ public class FXMLDocumentController implements Initializable {
                 System.out.println(""+fileEntry.getAbsolutePath());
                 // Intancia de un ImageView para los directorios obtenidos dentro del padre
                 ImageView dirImage = new ImageView(directoryIcon);
-                dirImage.setFitHeight(25);
-                dirImage.setFitWidth(25);
+                dirImage.setFitHeight(20);
+                dirImage.setFitWidth(20);
                 
                 // Crear un TreeItem que sera insertado en el TreeItem padre
                 TreeItem<Directory> children = new TreeItem<>(new Directory(fileEntry.getName(), fileEntry.getAbsolutePath()), dirImage);

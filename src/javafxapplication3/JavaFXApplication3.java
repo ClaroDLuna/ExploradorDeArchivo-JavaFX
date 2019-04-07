@@ -20,10 +20,11 @@ public class JavaFXApplication3 extends Application {
     @Override
     public void start(Stage stage) throws Exception {
     
+        // cuál es la vista principal
         Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
-        
+        // interfaz del contenido
         Scene scene = new Scene(root);
-        
+        // cambiar la vista 
         stage.setScene(scene);
         stage.show();
     }

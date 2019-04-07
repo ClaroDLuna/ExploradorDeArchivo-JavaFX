@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxapplication3.ControllerTableView">
+   <children>
+      <TableView fx:id="tableview" prefHeight="430.0" prefWidth="412.0">
+         <columns>
+            <TableColumn fx:id="image" prefWidth="103.0" text="Icon" />
+            <TableColumn fx:id="name" prefWidth="103.0" text="Name" />
+            <TableColumn fx:id="size" prefWidth="103.0" text="Size" />
+            <TableColumn fx:id="date" prefWidth="103.0" text="Date Modified" />
+         </columns>
+      </TableView>
+   </children>
+</Pane>
